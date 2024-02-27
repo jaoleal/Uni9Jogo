@@ -1,5 +1,17 @@
-# Projeto de Jogos Digitais
+# Godot Game project
 
-* Aluno: João Leal
+## About and Tech Stack
 
-* Repositório: Jogo Uni9
+The Game will be made with Godot(The best game-engine that exist) with [Rust Bindings]((https://godot-rust.github.io/)).
+the relationship betwenn rust and gaming is just beginning, and i'll make part of that.
+
+### Game Concept
+  I'm a big fan of Super Mario World, i did all the 96 exits btw. Looking to it simple concept, jump run fly and kill some koopas, i got myself inspired to do something similar to a simple project. A Platformer but with the modern concepts of platforming games, something with more life and movement, just like: Celeste; DKC: Tropical Freeze; Rayman Origins; that are games that enherit the Super Mario World mechanics.
+
+### Game history
+  NotSteve found itself on another world just like the game that he played in his infancy, but it's corrupted by some evil company called FromHardware
+
+  **This is for educational purposes**, i'll not sell this game or make some kind of money of it.
+
+### Techinical
+  i'll write something when i have something done
