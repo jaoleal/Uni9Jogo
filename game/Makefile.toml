@@ -1,0 +1,286 @@
+{%- comment -%} dynamic make targets {%- endcomment -%}
+{%- assign target_dir = "target" -%}
+{%- assign lib_dir = "lib" -%}
+{%- assign bin_dir = "bin" -%}
+{%- assign aarch64-linux-android-debug = "aarch64-linux-android,Android,debug" | split: "|" -%}
+{%- assign aarch64-linux-android-release = "aarch64-linux-android,Android,release" | split: "|" -%}
+{%- assign armv7-linux-androideabi-debug = "armv7-linux-androideabi,Android,debug" | split: "|" -%}
+{%- assign armv7-linux-androideabi-release = "armv7-linux-androideabi,Android,release" | split: "|" -%}
+{%- assign arm_android_targets = aarch64-linux-android-debug | concat: aarch64-linux-android-release | concat: armv7-linux-androideabi-debug | concat: armv7-linux-androideabi-release | compact -%}
+{%- assign i686-linux-android-debug = "i686-linux-android,Android,debug" | split: "|" -%}
+{%- assign i686-linux-android-release = "i686-linux-android,Android,release" | split: "|" -%}
+{%- assign x86_64-linux-android-debug = "x86_64-linux-android,Android,debug" | split: "|" -%}
+{%- assign x86_64-linux-android-release = "x86_64-linux-android,Android,release" | split: "|" -%}
+{%- assign x86_android_targets = i686-linux-android-debug | concat: i686-linux-android-release | concat: x86_64-linux-android-debug | concat: x86_64-linux-android-release | compact -%}
+{%- assign android_targets = arm_android_targets | concat: x86_android_targets | compact -%}
+{%- assign i686-unknown-linux-gnu-debug = "i686-unknown-linux-gnu,Linux/X11,debug" | split: "|" -%}
+{%- assign i686-unknown-linux-gnu-release = "i686-unknown-linux-gnu,Linux/X11,release" | split: "|" -%}
+{%- assign x86_64-unknown-linux-gnu-debug = "x86_64-unknown-linux-gnu,Linux/X11,debug" | split: "|" -%}
+{%- assign x86_64-unknown-linux-gnu-release = "x86_64-unknown-linux-gnu,Linux/X11,release" | split: "|" -%}
+{%- assign x86_linux_targets = i686-unknown-linux-gnu-debug | concat: i686-unknown-linux-gnu-release | concat: x86_64-unknown-linux-gnu-debug | concat: x86_64-unknown-linux-gnu-release | compact -%}
+{%- assign x86_64-apple-darwin-debug = "x86_64-apple-darwin,Mac OSX,debug" | split: "|" -%}
+{%- assign x86_64-apple-darwin-release = "x86_64-apple-darwin,Mac OSX,release" | split: "|" -%}
+{%- assign aarch64-apple-darwin-debug = "aarch64-apple-darwin,Mac OSX,debug" | split: "|" -%}
+{%- assign aarch64-apple-darwin-release = "aarch64-apple-darwin,Mac OSX,release" | split: "|" -%}
+{%- assign mac_osx_targets = x86_64-apple-darwin-debug | concat: x86_64-apple-darwin-release | concat: aarch64-apple-darwin-debug | concat: aarch64-apple-darwin-release | compact -%}
+{%- assign aarch64-apple-ios-debug = "aarch64-apple-ios,iOS,debug" | split: "|" -%}
+{%- assign aarch64-apple-ios-release = "aarch64-apple-ios,iOS,release" | split: "|" -%}
+{%- assign ios_targets = aarch64-apple-ios-debug | concat: aarch64-apple-ios-release | compact -%}
+{%- assign i686-pc-windows-gnu-debug = "i686-pc-windows-gnu,Windows Desktop,debug" | split: "|" -%}
+{%- assign i686-pc-windows-gnu-release = "i686-pc-windows-gnu,Windows Desktop,release" | split: "|" -%}
+{%- assign x86_64-pc-windows-gnu-debug = "x86_64-pc-windows-gnu,Windows Desktop,debug" | split: "|" -%}
+{%- assign x86_64-pc-windows-gnu-release = "x86_64-pc-windows-gnu,Windows Desktop,release" | split: "|" -%}
+{%- assign i686-pc-windows-msvc-debug = "i686-pc-windows-msvc,Windows Desktop,debug" | split: "|" -%}
+{%- assign i686-pc-windows-msvc-release = "i686-pc-windows-msvc,Windows Desktop,release" | split: "|" -%}
+{%- assign x86_64-pc-windows-msvc-debug = "x86_64-pc-windows-msvc,Windows Desktop,debug" | split: "|" -%}
+{%- assign x86_64-pc-windows-msvc-release = "x86_64-pc-windows-msvc,Windows Desktop,release" | split: "|" -%}
+{%- assign windows_gnu_targets = i686-pc-windows-gnu-debug | concat: i686-pc-windows-gnu-release | concat: x86_64-pc-windows-gnu-debug | concat: x86_64-pc-windows-gnu-release | compact -%}
+{%- assign windows_msvc_targets = i686-pc-windows-msvc-debug | concat: i686-pc-windows-msvc-release | concat: x86_64-pc-windows-msvc-debug | concat: x86_64-pc-windows-msvc-release | compact -%}
+{%- assign wasm32-unknown-emscripten-debug = "wasm32-unknown-emscripten,HTML5,debug" | split: "|" -%}
+{%- assign wasm32-unknown-emscripten-release = "wasm32-unknown-emscripten,HTML5,release" | split: "|" -%}
+{%- assign wasm_targets = wasm32-unknown-emscripten-debug | concat: wasm32-unknown-emscripten-release | compact -%}
+{%- assign all_targets = android_targets | concat: x86_linux_targets | concat: mac_osx_targets | concat: ios_targets | concat: windows_gnu_targets | concat: windows_msvc_targets | concat: wasm_targets | compact -%}
+{%- assign godot_project_path_arg = "--path ../godot/" -%}
+[tasks.build-debug]
+script_runner = "@shell"
+script = '''
+{%  for target in all_targets -%}
+{%-   assign t = target | split: "," -%}
+{%-   assign build_target = t[0] -%}
+{%-   assign target_type = t[2] -%}
+{%-   if target_type == "debug" -%}
+# cargo make build-{{build_target}}-{{target_type}}
+{%    endif %}
+{%- endfor -%}
+'''
+
+[tasks.build-release]
+script_runner = "@shell"
+script = '''
+{%  for target in all_targets -%}
+{%-   assign t = target | split: "," -%}
+{%-   assign build_target = t[0] -%}
+{%-   assign target_type = t[2] -%}
+{%-   if target_type == "release" -%}
+# cargo make build-{{build_target}}-{{target_type}}
+{%    endif %}
+{%- endfor -%}
+'''
+
+[tasks.export-debug]
+script_runner = "@shell"
+script = '''
+{%  for target in all_targets -%}
+{%-   assign t = target | split: "," -%}
+{%-   assign build_target = t[0] -%}
+{%-   assign target_type = t[2] -%}
+{%-   if target_type == "debug" -%}
+# cargo make export-{{build_target}}-{{target_type}}
+{%    endif %}
+{%- endfor -%}
+'''
+
+[tasks.export-release]
+script_runner = "@shell"
+script = '''
+{%  for target in all_targets -%}
+{%-   assign t = target | split: "," -%}
+{%-   assign build_target = t[0] -%}
+{%-   assign target_type = t[2] -%}
+{%-   if target_type == "release" -%}
+# cargo make export-{{build_target}}-{{target_type}}
+{%    endif %}
+{%- endfor -%}
+'''
+
+{% for target in all_targets %}
+{%-   assign t = target | split: "," -%}
+{%-   assign build_target = t[0] -%}
+{%-   assign export_target = t[1] -%}
+{%-   assign target_type = t[2] -%}
+{%-   capture exported_project -%}
+{%-     case export_target -%}
+{%-       when "Android" -%}
+{{project-name}}.{{target_type}}.{{build_target}}.apk
+{%-       when "Linux/X11" -%}
+{{project-name}}.{{target_type}}.{{build_target}}
+{%-       when "Mac OSX" -%}
+{{project-name}}.{{target_type}}.{{build_target}}.dmg
+{%-       when "iOS" -%}
+{{project-name}}.{{target_type}}.{{build_target}}
+{%-       when "Windows Desktop" -%}
+{{project-name}}.{{target_type}}.{{build_target}}.exe
+{%-       when "HTML5" -%}
+{{project-name}}.{{target_type}}.{{build_target}}.html
+{%-     endcase -%}
+{%-   endcapture -%}
+{%-   capture lib_ext -%}
+{%-     case export_target -%}
+{%-       when "Android" -%}
+so
+{%-       when "Linux/X11" -%}
+so
+{%-       when "Mac OSX" -%}
+dylib
+{%-       when "iOS" -%}
+a
+{%-       when "Windows Desktop" -%}
+dll
+{%-       when "HTML5" -%}
+wasm
+{%-     endcase -%}
+{%-   endcapture -%}
+{%-   capture build_arg -%}
+{%-     case target_type -%}
+{%-       when "debug" -%}
+
+{%-       when "release" -%}
+--release
+{%-     endcase -%}
+{%-   endcapture -%}
+{%-   capture export_arg -%}
+{%-     case target_type -%}
+{%-       when "debug" -%}
+--export-debug
+{%-       when "release" -%}
+--export
+{%-     endcase -%}
+{%-   endcapture %}
+[tasks.ps1-build-{{build_target}}-{{target_type}}]
+script_runner = "@shell"
+script = '''
+cargo build --target {{build_target}} {{build_arg}}
+mv ../{{target_dir}}/{{build_target}}/{{target_type}}/*.{{lib_ext}} ../{{lib_dir}}/{{build_target}}
+'''
+
+[tasks.sh-build-{{build_target}}-{{target_type}}]
+script_runner = "@shell"
+script = '''
+cargo build --target {{build_target}} {{build_arg}}
+if [[ -f ../{{lib_dir}}/{{build_target}}/*.{{lib_ext}} ]]; then
+  rm ../{{lib_dir}}/{{build_target}}/*.{{lib_ext}}
+fi
+mv ../{{target_dir}}/{{build_target}}/{{target_type}}/*.{{lib_ext}} ../{{lib_dir}}/{{build_target}}
+'''
+
+[tasks.build-{{build_target}}-{{target_type}}]
+run_task = [
+    { name = "ps1-build-{{build_target}}-{{target_type}}", condition = { platforms = ["windows"] } },
+    { name = "sh-build-{{build_target}}-{{target_type}}", condition = { platforms = ["linux", "mac"] } }
+]
+
+[tasks.export-{{build_target}}-{{target_type}}]
+dependencies = ["build-{{build_target}}-{{target_type}}"]
+script_runner = "@shell"
+script = '''
+cd ../godot/
+godot3 {{export_arg}} "{{export_target}}.{{build_target}}.{{target_type}}" ../{{bin_dir}}/{{build_target}}/{{exported_project}}
+'''
+{% endfor -%}
+{% comment %} static make targets {% endcomment %}
+[tasks.audit]
+command = "cargo"
+args = ["audit"]
+
+[tasks.check]
+command = "cargo"
+args = ["check"]
+dependencies = ["clean"]
+
+[tasks.clean]
+command = "cargo"
+args = ["clean"]
+
+[tasks.create-debug-keystore]
+script_runner = "@shell"
+script = '''
+keytool -keyalg RSA -genkeypair -alias androiddebugkey -keypass android -keystore {{project-name}}.debug.keystore -storepass android -dname "CN=Android Debug,O=Android,C=US" -validity 9999 -deststoretype pkcs12
+mv -b *.keystore ..
+'''
+
+[tasks.create-release-keystore]
+script_runner = "@shell"
+script = '''
+keytool -keyalg RSA -genkeypair -alias {{project-name}} -keypass ${@} -keystore {{project-name}}.release.keystore -storepass ${@} -dname "CN={{project-name}},O=Android,C=US" -validity 10000 -deststoretype pkcs12
+mv -b *.keystore ..
+sed -i "s|keystore/release_password=\".*\"|keystore/release_password=\"${@}\"|g" ../godot/export_presets.cfg
+'''
+
+[tasks.switch-gdnlib-msvc-to-gnu-entry]
+script_runner = "@shell"
+script = '''
+sed -i "s|Windows.64=\"res://../lib/x86_64-pc-windows-msvc/{{project-name}}.dll\"|# Windows.64=\"res://../lib/x86_64-pc-windows-msvc/{{project-name}}.dll\"|g" ../godot/native/game.gdnlib
+sed -i "s|# Windows.64=\"res://../lib/x86_64-pc-windows-gnu/{{project-name}}.dll\"|Windows.64=\"res://../lib/x86_64-pc-windows-gnu/{{project-name}}.dll\"|g" ../godot/native/game.gdnlib
+sed -i "s|Windows.32=\"res://../lib/i686-pc-windows-msvc/{{project-name}}.dll\"|# Windows.32=\"res://../lib/i686-pc-windows-msvc/{{project-name}}.dll\"|g" ../godot/native/game.gdnlib
+sed -i "s|# Windows.32=\"res://../lib/i686-pc-windows-gnu/{{project-name}}.dll\"|Windows.32=\"res://../lib/i686-pc-windows-gnu/{{project-name}}.dll\"|g" ../godot/native/game.gdnlib
+'''
+
+[tasks.switch-gdnlib-gnu-to-msvc-entry]
+script_runner = "@shell"
+script = '''
+sed -i "s|Windows.64=\"res://../lib/x86_64-pc-windows-gnu/{{project-name}}.dll\"|# Windows.64=\"res://../lib/x86_64-pc-windows-gnu/{{project-name}}.dll\"|g" ../godot/native/game.gdnlib
+sed -i "s|# Windows.64=\"res://../lib/x86_64-pc-windows-msvc/{{project-name}}.dll\"|Windows.64=\"res://../lib/x86_64-pc-windows-msvc/{{project-name}}.dll\"|g" ../godot/native/game.gdnlib
+sed -i "s|Windows.32=\"res://../lib/i686-pc-windows-gnu/{{project-name}}.dll\"|# Windows.32=\"res://../lib/i686-pc-windows-gnu/{{project-name}}.dll\"|g" ../godot/native/game.gdnlib
+sed -i "s|# Windows.32=\"res://../lib/i686-pc-windows-msvc/{{project-name}}.dll\"|Windows.32=\"res://../lib/i686-pc-windows-msvc/{{project-name}}.dll\"|g" ../godot/native/game.gdnlib
+'''
+
+[tasks.doc]
+command = "cargo"
+args = ["doc", "--no-deps", "--open", "-v"]
+dependencies = ["clean"]
+
+[tasks.edit]
+script_runner = "@shell"
+script = '''
+godot3 -e --path {{godot_project_path_arg}}
+'''
+
+[tasks.run-for-linux]
+# dependencies = ["build-i686-unknown-linux-gnu-debug"]
+dependencies = ["build-x86_64-unknown-linux-gnu-debug"]
+run_task = "run-godot"
+
+[tasks.run-for-macos]
+dependencies = ["build-x86_64-apple-darwin-debug"]
+run_task = "run-godot-macos"
+
+[tasks.run-for-macos-apple-silicon]
+dependencies = ["build-aarch64-apple-darwin-debug"]
+run_task = "run-godot-macos"
+
+[tasks.run-for-windows]
+# dependencies = ["build-i686-pc-windows-gnu-debug"]
+# dependencies = ["build-i686-pc-windows-msvc-debug"]
+# dependencies = ["build-x86_64-pc-windows-gnu-debug"]
+dependencies = ["build-x86_64-pc-windows-msvc-debug"]
+run_task = "run-godot"
+
+[tasks.run-godot]
+script_runner = "@shell"
+script = '''
+cd ../godot/
+godot3 -d
+'''
+
+[tasks.run-godot-macos]
+script_runner = "@shell"
+script = '''
+cd ../godot/
+/Applications/Godot.app/Contents/MacOS/Godot -d
+'''
+
+[tasks.run]
+run_task = [
+    { name = "run-for-windows", condition = { platforms = ["windows"] } },
+    { name = "run-for-linux", condition = { platforms = ["linux"] } },
+    { name = "run-for-macos", condition = { platforms = ["mac"], env = { "CARGO_MAKE_RUST_TARGET_ARCH" = "x86_64" } } },
+    { name = "run-for-macos-apple-silicon", condition = { platforms = ["mac"], env = { "CARGO_MAKE_RUST_TARGET_ARCH" = "aarch64" } } }
+]
+
+[tasks.test]
+command = "cargo"
+args = ["test"]
+dependencies = ["clean"]
+
+[env]
+CARGO_MAKE_EXTEND_WORKSPACE_MAKEFILE = true
