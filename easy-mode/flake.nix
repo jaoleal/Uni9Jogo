@@ -38,7 +38,7 @@
           ];
 
           shellHook = ''
-            alias godot="nixGL godot -e"
+            alias godot="godot3"
           '';
         };
       }
