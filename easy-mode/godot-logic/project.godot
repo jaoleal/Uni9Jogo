@@ -11,7 +11,14 @@ config_version=4
 [application]
 
 config/name="Easy Mode"
+run/main_scene="res://Node2D.tscn"
 config/icon="res://icon.png"
+
+[display]
+
+window/size/width=1400
+window/size/height=1050
+window/stretch/aspect="keep"
 
 [gui]
 
@@ -23,4 +30,6 @@ common/enable_pause_aware_picking=true
 
 [rendering]
 
+threads/thread_model=2
+threads/thread_safe_bvh=true
 environment/default_environment="res://default_env.tres"
