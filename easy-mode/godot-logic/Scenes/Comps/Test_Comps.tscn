@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scenes/Chars/Test_Char.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Levels/Test_Level.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Comps/Test_Comps.gd" type="Script" id=3]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="Test_Map" parent="." instance=ExtResource( 2 )]
+position = Vector2( 935, 867 )
+scale = Vector2( 2.75553, 2.75195 )
+
+[node name="Char_blue" parent="." instance=ExtResource( 1 )]
+position = Vector2( 134, 131 )
+scale = Vector2( 4.68, 4.68 )
