@@ -695,8 +695,11 @@ points = PoolVector2Array( 18, 18, 0, 18, 0, 0, 18, 0 )
 2/z_index = 0
 
 [node name="Test_Map" type="Node2D"]
+position = Vector2( 699, 720 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2( 605, 87 )
+scale = Vector2( 3.71266, 3.71266 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource( 1 )

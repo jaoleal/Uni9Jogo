@@ -8,8 +8,8 @@
 script = ExtResource( 3 )
 
 [node name="Test_Map" parent="." instance=ExtResource( 2 )]
-position = Vector2( 935, 867 )
-scale = Vector2( 2.75553, 2.75195 )
+position = Vector2( 1142, 810 )
+scale = Vector2( 0.753305, 0.752327 )
 
 [node name="Char_blue" parent="." instance=ExtResource( 1 )]
 position = Vector2( 134, 131 )
