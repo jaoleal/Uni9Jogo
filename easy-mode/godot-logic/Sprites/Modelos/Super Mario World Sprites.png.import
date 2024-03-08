@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/tilemap_packed.png-df901e4a97c1873010f8f9cc9275702a.stex"
+path="res://.import/Super Mario World Sprites.png-5dbbaa79704d99f491a6c1259088880f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/aseprite/kenney_pixel-platformer/Tilemap/tilemap_packed.png"
-dest_files=[ "res://.import/tilemap_packed.png-df901e4a97c1873010f8f9cc9275702a.stex" ]
+source_file="res://Sprites/Modelos/Super Mario World Sprites.png"
+dest_files=[ "res://.import/Super Mario World Sprites.png-5dbbaa79704d99f491a6c1259088880f.stex" ]
 
 [params]
 
@@ -31,5 +31,5 @@ process/invert_color=false
 process/normal_map_invert_y=false
 stream=false
 size_limit=0
-detect_3d=true
+detect_3d=false
 svg/scale=1.0
