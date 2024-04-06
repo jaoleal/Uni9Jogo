@@ -12,7 +12,9 @@ Membros e Delegação:
 
 * João Leal
 > Programação do Jogo
-Idealização do jogo
+
+* Magno Lopes
+> Programacao do Jogo
 
 * Torquato e Verzaga
 > Programação do site
