@@ -35,6 +35,7 @@
             pkg-config
             rust-bin.stable.latest.default
             godot3
+            gimp
           ];
 
           shellHook = ''

@@ -8,7 +8,7 @@ func _ready():
 	pass
 
 func _input(event):
-	event = "something"
+	event = "carta branca"
 	pass
 func alt_select():
 	pass
