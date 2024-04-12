@@ -1,9 +1,13 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://assets/gimp/earth_map_beta.png" type="Texture" id=1]
 [ext_resource path="res://scripts/North_America.gd" type="Script" id=2]
 [ext_resource path="res://assets/gimp/north_america_piece.png" type="Texture" id=3]
 [ext_resource path="res://assets/gimp/south_america_piece.png" type="Texture" id=4]
+[ext_resource path="res://assets/gimp/Oceania_piece.png" type="Texture" id=5]
+[ext_resource path="res://assets/gimp/Africa_piece.png" type="Texture" id=6]
+[ext_resource path="res://assets/gimp/Asia_piece.png" type="Texture" id=7]
+[ext_resource path="res://assets/gimp/Europe_piece.png" type="Texture" id=8]
 
 [node name="Node2D" type="Node2D"]
 
@@ -54,7 +58,87 @@ collision_mask = 2
 position = Vector2( 0, 0.5 )
 polygon = PoolVector2Array( -53, -182.5, -84, -136.5, -87, -101.5, -55, -39.5, -52, 3.5, -67, 133.5, -54, 163.5, -34, 168.5, -13, 158.5, -31, 142.5, -19, 119.5, -22, 108.5, 52, 26.5, 65, -8.5, 85, -14.5, 109, -86.5, 76, -114.5, 41, -145.5, 14, -157.5, 9, -177.5 )
 
+[node name="Africa" type="Node2D" parent="LiveLayer"]
+position = Vector2( 709, 796 )
+script = ExtResource( 2 )
+
+[node name="Tween" type="Tween" parent="LiveLayer/Africa"]
+
+[node name="Sprite" type="Sprite" parent="LiveLayer/Africa/Tween"]
+position = Vector2( 1075, 725 )
+texture = ExtResource( 6 )
+
+[node name="mouse_area" type="Area2D" parent="LiveLayer/Africa"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="LiveLayer/Africa/mouse_area"]
+position = Vector2( 321, -48 )
+polygon = PoolVector2Array( -31, -196, -113, -204, -147, -169, -162, -73, -140, -39, -89, -42, -59, -23, -56, 44, -47, 131, -22, 157, 36, 161, 83, 117, 86, 85, 114, 103, 132, 79, 162, 29, 119, 4, 99, 23, 112, -18, 129, -54, 132, -91, 107, -89, 80, -117, 72, -147, 48, -198, 9, -195 )
+
+[node name="Oceania" type="Node2D" parent="LiveLayer"]
+position = Vector2( 709, 796 )
+script = ExtResource( 2 )
+
+[node name="Tween" type="Tween" parent="LiveLayer/Oceania"]
+
+[node name="Sprite" type="Sprite" parent="LiveLayer/Oceania/Tween"]
+position = Vector2( 1514, 816 )
+texture = ExtResource( 5 )
+
+[node name="mouse_area" type="Area2D" parent="LiveLayer/Oceania"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="LiveLayer/Oceania/mouse_area"]
+position = Vector2( 742, 70 )
+polygon = PoolVector2Array( -4, -37, -49, 1, -52, 40, -27, 80, 25, 60, 71, 94, 128, 86, 139, 16, 80, -65, 156, -87, 85, -149, 14, -157, -20, -183, -60, -154, -112, -177, -147, -169, -117, -114, -67, -92, -28, -58 )
+
+[node name="Asia" type="Node2D" parent="LiveLayer"]
+position = Vector2( 709, 796 )
+script = ExtResource( 2 )
+
+[node name="Tween" type="Tween" parent="LiveLayer/Asia"]
+
+[node name="Sprite" type="Sprite" parent="LiveLayer/Asia/Tween"]
+position = Vector2( 1374, 452 )
+texture = ExtResource( 7 )
+
+[node name="mouse_area" type="Area2D" parent="LiveLayer/Asia"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="LiveLayer/Asia/mouse_area"]
+position = Vector2( 695, -225 )
+polygon = PoolVector2Array( 194, -72, 172, -121, 227, -108, 252, -143, 283, -167, 332, -243, 228, -277, 95, -277, 40, -303, 19, -329, -120, -352, -155, -309, -199, -341, -254, -328, -278, -300, -251, -243, -227, -236, -227, -227, -223, -216, -222, -201, -224, -186, -229, -177, -234, -167, -235, -162, -241, -103, -243, -68, -242, -49, -270, -59, -301, -73, -321, -65, -341, -61, -351, -32, -315, -30, -313, -20, -316, -12, -313, 3, -304, 15, -284, 54, -279, 71, -272, 79, -254, 80, -223, 75, -195, 52, -184, 36, -197, 28, -167, 51, -142, 130, -71, 84, -68, 86, -51, 113, -36, 127, -26, 133, -14, 139, -6, 133, -12, 104, -24, 100, 7, 102, 24, 75, 13, 94, 9, 61, 68, 26, 73, -17, 91, -32, 110, 28, 153, 12, 183, -17 )
+
+[node name="Europe" type="Node2D" parent="LiveLayer"]
+position = Vector2( 709, 796 )
+script = ExtResource( 2 )
+
+[node name="Tween" type="Tween" parent="LiveLayer/Europe"]
+
+[node name="Sprite" type="Sprite" parent="LiveLayer/Europe/Tween"]
+position = Vector2( 1023, 423 )
+texture = ExtResource( 8 )
+
+[node name="mouse_area" type="Area2D" parent="LiveLayer/Europe"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="LiveLayer/Europe/mouse_area"]
+position = Vector2( 349, -250 )
+polygon = PoolVector2Array( 99, -212, 118, -212, 123, -206, 121, -194, 124, -174, 120, -161, 115, -146, 109, -135, 110, -96, 105, -78, 100, -62, 101, -43, 99, -26, 76, -34, 55, -45, 41, -55, 26, -42, -12, -26, -30, -11, -45, -3, -60, -15, -51, -29, -66, -43, -83, -43, -94, -29, -98, -13, -114, -5, -135, -5, -145, -15, -145, -35, -141, -59, -120, -59, -131, -73, -113, -86, -93, -96, -88, -103, -89, -115, -150, -93, -144, -115, -151, -117, -183, -114, -170, -157, -160, -181, -206, -233, -185, -265, -103, -280, -67, -265, -34, -275 )
+
 [connection signal="mouse_entered" from="LiveLayer/North_America/mouse_area" to="LiveLayer/North_America" method="_on_mouse_area_mouse_entered"]
 [connection signal="mouse_exited" from="LiveLayer/North_America/mouse_area" to="LiveLayer/North_America" method="_on_mouse_area_mouse_exited"]
 [connection signal="mouse_entered" from="LiveLayer/South_America/mouse_area" to="LiveLayer/South_America" method="_on_mouse_area_mouse_entered"]
 [connection signal="mouse_exited" from="LiveLayer/South_America/mouse_area" to="LiveLayer/South_America" method="_on_mouse_area_mouse_exited"]
+[connection signal="mouse_entered" from="LiveLayer/Africa/mouse_area" to="LiveLayer/Africa" method="_on_mouse_area_mouse_entered"]
+[connection signal="mouse_exited" from="LiveLayer/Africa/mouse_area" to="LiveLayer/Africa" method="_on_mouse_area_mouse_exited"]
+[connection signal="mouse_entered" from="LiveLayer/Oceania/mouse_area" to="LiveLayer/Oceania" method="_on_mouse_area_mouse_entered"]
+[connection signal="mouse_exited" from="LiveLayer/Oceania/mouse_area" to="LiveLayer/Oceania" method="_on_mouse_area_mouse_exited"]
+[connection signal="mouse_entered" from="LiveLayer/Asia/mouse_area" to="LiveLayer/Asia" method="_on_mouse_area_mouse_entered"]
+[connection signal="mouse_exited" from="LiveLayer/Asia/mouse_area" to="LiveLayer/Asia" method="_on_mouse_area_mouse_exited"]
+[connection signal="mouse_entered" from="LiveLayer/Europe/mouse_area" to="LiveLayer/Europe" method="_on_mouse_area_mouse_entered"]
+[connection signal="mouse_exited" from="LiveLayer/Europe/mouse_area" to="LiveLayer/Europe" method="_on_mouse_area_mouse_exited"]
