@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scripts/North_America.gd" type="Script" id=1]
+[ext_resource path="res://assets/gimp/Oceania_piece.png" type="Texture" id=2]
+
+[node name="Oceania" type="Node2D"]
+position = Vector2( 709, 796 )
+script = ExtResource( 1 )
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="Sprite" type="Sprite" parent="Tween"]
+position = Vector2( 1514, 816 )
+texture = ExtResource( 2 )
+
+[node name="mouse_area" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="mouse_area"]
+position = Vector2( 742, 70 )
+polygon = PoolVector2Array( -4, -37, -49, 1, -52, 40, -27, 80, 25, 60, 71, 94, 128, 86, 139, 16, 80, -65, 156, -87, 85, -149, 14, -157, -20, -183, -60, -154, -112, -177, -147, -169, -117, -114, -67, -92, -28, -58 )
+
+[connection signal="mouse_entered" from="mouse_area" to="." method="_on_mouse_area_mouse_entered"]
+[connection signal="mouse_exited" from="mouse_area" to="." method="_on_mouse_area_mouse_exited"]

@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scripts/North_America.gd" type="Script" id=1]
+[ext_resource path="res://assets/gimp/Europe_piece.png" type="Texture" id=2]
+
+[node name="Europe" type="Node2D"]
+position = Vector2( 709, 796 )
+script = ExtResource( 1 )
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="Sprite" type="Sprite" parent="Tween"]
+position = Vector2( 1023, 423 )
+texture = ExtResource( 2 )
+
+[node name="mouse_area" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="mouse_area"]
+position = Vector2( 349, -250 )
+polygon = PoolVector2Array( 99, -212, 118, -212, 123, -206, 121, -194, 124, -174, 120, -161, 115, -146, 109, -135, 110, -96, 105, -78, 100, -62, 101, -43, 99, -26, 76, -34, 55, -45, 41, -55, 26, -42, -12, -26, -30, -11, -45, -3, -60, -15, -51, -29, -66, -43, -83, -43, -94, -29, -98, -13, -114, -5, -135, -5, -145, -15, -145, -35, -141, -59, -120, -59, -131, -73, -113, -86, -93, -96, -88, -103, -89, -115, -150, -93, -144, -115, -151, -117, -183, -114, -170, -157, -160, -181, -206, -233, -185, -265, -103, -280, -67, -265, -34, -275 )
+
+[connection signal="mouse_entered" from="mouse_area" to="." method="_on_mouse_area_mouse_entered"]
+[connection signal="mouse_exited" from="mouse_area" to="." method="_on_mouse_area_mouse_exited"]

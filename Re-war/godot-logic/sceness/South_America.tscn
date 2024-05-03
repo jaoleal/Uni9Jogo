@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scripts/North_America.gd" type="Script" id=1]
+[ext_resource path="res://assets/gimp/south_america_piece.png" type="Texture" id=2]
+
+[node name="South_America" type="Node2D"]
+position = Vector2( 709, 796 )
+script = ExtResource( 1 )
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="Sprite" type="Sprite" parent="Tween"]
+position = Vector2( 709, 796.5 )
+texture = ExtResource( 2 )
+
+[node name="mouse_area" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="mouse_area"]
+position = Vector2( 0, 0.5 )
+polygon = PoolVector2Array( -53, -182.5, -84, -136.5, -87, -101.5, -55, -39.5, -52, 3.5, -67, 133.5, -54, 163.5, -34, 168.5, -13, 158.5, -31, 142.5, -19, 119.5, -22, 108.5, 52, 26.5, 65, -8.5, 85, -14.5, 109, -86.5, 76, -114.5, 41, -145.5, 14, -157.5, 9, -177.5 )
+
+[connection signal="mouse_entered" from="mouse_area" to="." method="_on_mouse_area_mouse_entered"]
+[connection signal="mouse_exited" from="mouse_area" to="." method="_on_mouse_area_mouse_exited"]
