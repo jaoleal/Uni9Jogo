@@ -3,6 +3,7 @@ game basics
 * Map
     * Territory selection
     * Bounds logic
+    * Sub territory selection
     * Visual feedback when selecting
 * game logic
     * Players
