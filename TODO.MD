@@ -5,8 +5,13 @@ game basics
     * Bounds logic
     * Visual feedback when selecting
 * game logic
-    * multiplayer logic (Local network multiplayer)
+    * Players
+    * Rounds mechanic
     * phases logic
     * player logic (Cards, troops, buffs)
     * attacking and defense
     * objectives and sub-objectives
+    * multiplayer logic (Local network multiplayer)
+* Effects and animation
+    * 2 pixel soldiers, to represent the quantity of troops, moving around
+    * effects when attacking

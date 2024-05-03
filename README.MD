@@ -3,7 +3,7 @@
 ## About and Tech Stack
 
 The Game will be made with Godot(The best game-engine that exist) with [Rust Bindings]((https://godot-rust.github.io/)).
-the relationship betwenn rust and gaming is just beginning, and i'll make part of that.
+the relationship between rust and gaming is just beginning, and i'll make part of that.
 
 ### Game Concept
 
