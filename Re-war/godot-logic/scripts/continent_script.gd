@@ -1,48 +1,41 @@
 extends Node2D
 
+#continent name
 export var CONTINENT_NAME = "Asia"
 
-onready var TWEEN_CHILD = $Main_Continent/Main_sprite_tween
-onready var COLLISION_AREA_NODE = $Main_Continent/mouse_area/CollisionPolygon2D
-onready var TERRITORIES_LAYER = $Sub_territories
+#nodes connections
+onready var TERRITORIES_LAYER = $Territories
+
+#variables
+onready var hovering = "None"
 onready var selected = false
-onready var is_hovering = false
+onready var selected_territory = "None"
 
 #custom signals
-signal continent_selected(continent)
-signal continent_unselected(continent)
+signal Territory_selected(Territory_name)
+signal Territory_unselected(Territory_name)
 
 func _ready():
 	for territory in TERRITORIES_LAYER.get_children():
-		territory.connect("mouse_entered_territory", self, "_on_mouse_entered_territory")
-		territory.connect("mouse_exited_territory", self, "_on_mouse_exited_territory")
-
+		territory.connect("Territory_selected", self, "_on_Territory_selected")
+		territory.connect("Territory_hovering", self, "_on_Territory_hovering")
 func _input(event):
-	if is_hovering and event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.pressed:
-		emit_signal("continent_selected", CONTINENT_NAME)
+	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.pressed:
+		emit_signal("Territory_selected", selected_territory)
 		selected = true
-		
-	elif !is_hovering and event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.pressed:
-		emit_signal("continent_unselected", CONTINENT_NAME)
+	if selected_territory != hovering and event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.pressed:
+		emit_signal("Territory_unselected", selected_territory)
+		selected_territory = "None"
 		selected = false
-		
-func hover(is_hovering):
-	if (is_hovering):
-		TWEEN_CHILD.interpolate_property($Main_Continent/Main_sprite_tween/Main_Sprite, "modulate", Color("#ffffff"), Color("#dcdcdc"), TWEEN_CHILD.TRANS_LINEAR,TWEEN_CHILD.EASE_IN_OUT)
+
+
+func _on_Territory_hovering(Territory_name, boolean):
+	if boolean:
+		hovering = Territory_name
 	else:
-		TWEEN_CHILD.interpolate_property($Main_Continent/Main_sprite_tween/Main_Sprite, "modulate", Color("#dcdcdc"), Color("#ffffff"), TWEEN_CHILD.TRANS_LINEAR,TWEEN_CHILD.EASE_IN_OUT)
-	TWEEN_CHILD.start()
+		hovering = "None"
 
-
-func _on_mouse_entered_territory(Continent):
-	
-func _on_mouse_exited_territory(Continent):
-	
-
-
-func _on_mouse_area_mouse_entered():
-	is_hovering = true
-	hover(true)
-func _on_mouse_area_mouse_exited():
-	is_hovering = false
-	hover(false)
+func _on_Territory_selected(territory):
+	selected_territory = territory
+func _on_Territory_unselected(territory):
+	selected_territory = territory

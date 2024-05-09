@@ -1,16 +1,16 @@
-shader_type canvas_item;
+[gd_resource type="Shader" format=2]
+
+[resource]
+code = "shader_type canvas_item;
 
 uniform vec4 color : hint_color = vec4(1.0);
 uniform float width : hint_range(0, 10) = 1.0;
-uniform float variation : hint_range(0, 1) = 0.1;
-uniform bool activate_variation = false;
 uniform int pattern : hint_range(0, 2) = 0; // diamond, circle, square
-uniform bool inside = false;
+uniform bool inside = true;
 uniform bool add_margins = true; // only useful when inside is false
 uniform vec2 number_of_images = vec2(1.0); // number of horizontal and vertical images in the sprite sheet
 
 void vertex() {
-	
 	if (add_margins) {
 		if ((UV.x <= 0.0 || UV.x >= 1.0) && (UV.y <= 0.0 || UV.y >= 1.0)) {
 			VERTEX += (UV * 2.0 - 1.0) * width;
@@ -70,3 +70,4 @@ void fragment() {
 		COLOR.a += (1.0 - COLOR.a) * color.a;
 	}
 }
+"

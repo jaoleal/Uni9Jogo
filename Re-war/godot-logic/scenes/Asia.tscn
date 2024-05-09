@@ -1,65 +1,75 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://scripts/continent_script.gd" type="Script" id=1]
 [ext_resource path="res://assets/gimp/Asia_piece.png" type="Texture" id=2]
-[ext_resource path="res://scripts/Node2D.gd" type="Script" id=3]
-[ext_resource path="res://outline.gdshader" type="Shader" id=4]
-
-[sub_resource type="ShaderMaterial" id=1]
-shader = ExtResource( 4 )
-shader_param/color = Color( 0, 0, 0, 1 )
-shader_param/width = 2.871
-shader_param/pattern = 0
-shader_param/inside = false
-shader_param/add_margins = true
-shader_param/number_of_images = Vector2( 1, 1 )
+[ext_resource path="res://scenes/Territory.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Territory_Suecia.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Territory_Polonia.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Territory_Vietna.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Territory_Pitor.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Territory_Japon.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Territory_China.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Territory_India.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Territory_Varal.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Territory_Moscou.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Territory_Fraco.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Territory_Oriente.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Territory_Chita.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Territory_Renegon.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Territory_Mongao.tscn" type="PackedScene" id=17]
 
 [node name="Father" type="Node2D"]
-position = Vector2( 709, 796 )
+position = Vector2( 244, 812 )
 script = ExtResource( 1 )
-CONTINENT_NAME = null
 
-[node name="Main_Continent" type="Node2D" parent="."]
-
-[node name="Main_sprite_tween" type="Tween" parent="Main_Continent"]
-
-[node name="Main_Sprite" type="Sprite" parent="Main_Continent/Main_sprite_tween"]
-material = SubResource( 1 )
-use_parent_material = true
-position = Vector2( 1375, 452 )
+[node name="Reference" type="Sprite" parent="."]
+visible = false
+position = Vector2( 665, -344 )
 texture = ExtResource( 2 )
 
-[node name="mouse_area" type="Area2D" parent="Main_Continent"]
-collision_layer = 2
-collision_mask = 2
+[node name="Territories" type="CanvasLayer" parent="."]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Main_Continent/mouse_area"]
-visible = false
-position = Vector2( 695, -225 )
-z_index = 1
-polygon = PoolVector2Array( -168, -249, -191, -260, -148, -294, -157, -318, -236, -330, -264, -225, -224, -228, -230, -175, -249, -115, -239, -57, -326, -85, -393, -25, -307, -27, -328, -10, -292, 60, -246, 120, -204, 70, -172, 40, -233, 16, -163, 42, -152, 84, -146, 108, -112, 116, -92, 79, -65, 52, -61, 71, -56, 81, -49, 76, -61, 121, -30, 128, 31, 178, -20, 99, 17, 95, 16, 53, 0, 50, 37, 50, 58, 30, 62, 17, 65, 6, 62, -31, 85, -6, 95, -36, 103, -13, 100, 8, 108, 21, 155, 11, 167, -18, 213, -52, 208, -75, 171, -85, 143, -84, 124, -80, 154, -113, 149, -134, 125, -138, 153, -161, 184, -163, 206, -171, 176, -148, 178, -120, 194, -102, 213, -102, 229, -124, 242, -141, 276, -165, 313, -181, 307, -233, 255, -258, 193, -268, 133, -278, 119, -272, 76, -301, -34, -336, -155, -282 )
+[node name="territory_Russia" parent="Territories" instance=ExtResource( 3 )]
+position = Vector2( 957, 380 )
+__meta__ = {
+"_edit_group_": true
+}
 
-[node name="Sub_territories" type="Tween" parent="."]
+[node name="Territory_Suecia" parent="Territories" instance=ExtResource( 4 )]
+position = Vector2( 755, 352 )
 
-[node name="territory_Russia" type="Node2D" parent="Sub_territories"]
-script = ExtResource( 3 )
+[node name="Territory_Pitor" parent="Territories" instance=ExtResource( 7 )]
+position = Vector2( 1169, 406 )
 
-[node name="Polygon2d" type="Polygon2D" parent="Sub_territories/territory_Russia"]
-color = Color( 1, 0.443137, 0.356863, 1 )
-antialiased = true
-polygon = PoolVector2Array( 1244, 341, 1240, 394, 1264, 444, 1315, 407, 1361, 474, 1452, 470, 1475, 418, 1511, 451, 1541, 445, 1519, 430, 1546, 405, 1591, 407, 1606, 387, 1630, 390, 1599, 423, 1604, 457, 1628, 423, 1636, 399, 1687, 386, 1693, 364, 1694, 336, 1650, 333, 1619, 324, 1584, 325, 1575, 309, 1536, 304, 1511, 318, 1500, 317, 1497, 302, 1473, 293, 1466, 299, 1427, 291, 1427, 264, 1392, 252, 1372, 267, 1328, 277, 1270, 309, 1249, 295, 1249, 338 )
+[node name="Territory_China" parent="Territories" instance=ExtResource( 9 )]
+position = Vector2( 975, 555 )
 
-[node name="territory_area2D" type="Area2D" parent="Sub_territories/territory_Russia/Polygon2d"]
-collision_layer = 2
-collision_mask = 2
+[node name="Territory_Japon" parent="Territories" instance=ExtResource( 8 )]
+position = Vector2( 1082, 559 )
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sub_territories/territory_Russia/Polygon2d/territory_area2D"]
-visible = false
-z_index = 1
-polygon = PoolVector2Array( 1244, 341, 1240, 394, 1264, 444, 1315, 407, 1361, 474, 1452, 470, 1475, 418, 1511, 451, 1541, 445, 1519, 430, 1546, 405, 1591, 407, 1606, 387, 1630, 390, 1599, 423, 1604, 457, 1628, 423, 1636, 399, 1687, 386, 1693, 364, 1694, 336, 1650, 333, 1619, 324, 1584, 325, 1575, 309, 1536, 304, 1511, 318, 1500, 317, 1497, 302, 1473, 293, 1466, 299, 1427, 291, 1427, 264, 1392, 252, 1372, 267, 1328, 277, 1270, 309, 1249, 295, 1249, 338 )
-disabled = true
+[node name="Territory_Polonia" parent="Territories" instance=ExtResource( 5 )]
+position = Vector2( 672, 595 )
 
-[connection signal="mouse_entered" from="Main_Continent/mouse_area" to="." method="_on_mouse_area_mouse_entered"]
-[connection signal="mouse_exited" from="Main_Continent/mouse_area" to="." method="_on_mouse_area_mouse_exited"]
-[connection signal="mouse_entered" from="Sub_territories/territory_Russia/Polygon2d/territory_area2D" to="Sub_territories/territory_Russia" method="_on_territory_area2D_mouse_entered"]
-[connection signal="mouse_exited" from="Sub_territories/territory_Russia/Polygon2d/territory_area2D" to="Sub_territories/territory_Russia" method="_on_territory_area2D_mouse_exited"]
+[node name="Territory_Vietna" parent="Territories" instance=ExtResource( 6 )]
+position = Vector2( 900, 653 )
+
+[node name="Territory_India" parent="Territories" instance=ExtResource( 10 )]
+position = Vector2( 839, 598 )
+
+[node name="Territory_Oriente" parent="Territories" instance=ExtResource( 14 )]
+position = Vector2( 774, 578 )
+
+[node name="Territory_Varal" parent="Territories" instance=ExtResource( 11 )]
+position = Vector2( 796, 588 )
+
+[node name="Territory_Fraco" parent="Territories" instance=ExtResource( 13 )]
+position = Vector2( 803, 444 )
+
+[node name="Territory_Renegon" parent="Territories" instance=ExtResource( 16 )]
+
+[node name="Territory_Moscou" parent="Territories" instance=ExtResource( 12 )]
+
+[node name="Territory_Mongao" parent="Territories" instance=ExtResource( 17 )]
+TERRITORY_NAME = "Mongao"
+
+[node name="Territory_Chita" parent="Territories" instance=ExtResource( 15 )]

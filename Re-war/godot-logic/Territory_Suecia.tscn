@@ -1,0 +1,54 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scripts/Node2D.gd" type="Script" id=1]
+[ext_resource path="res://outline.gdshader" type="Shader" id=2]
+[ext_resource path="res://assets/gimp/Suecia.png" type="Texture" id=3]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 2 )
+shader_param/color = Color( 0.254902, 0.254902, 0.254902, 1 )
+shader_param/width = 1.0
+shader_param/variation = 0.1
+shader_param/activate_variation = false
+shader_param/pattern = 0
+shader_param/inside = true
+shader_param/add_margins = false
+shader_param/number_of_images = Vector2( 1, 1 )
+
+[node name="Territory_Suecia" type="Node2D"]
+position = Vector2( 299, 332 )
+z_as_relative = false
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+TERRITORY_NAME = "Suecia"
+
+[node name="Sprite2D" type="Sprite" parent="."]
+material = SubResource( 1 )
+position = Vector2( 0.25, 1 )
+scale = Vector2( 0.995601, 1 )
+texture = ExtResource( 3 )
+
+[node name="territory_area2D" type="Area2D" parent="Sprite2D"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sprite2D/territory_area2D"]
+position = Vector2( -1419.49, -363 )
+z_index = 1
+polygon = PoolVector2Array( 1368.02, 345, 1388.11, 305, 1432.3, 287, 1443.35, 287, 1442.34, 297, 1408.19, 311, 1391.12, 334, 1400.16, 354, 1421.25, 357, 1444.35, 365, 1445.36, 365, 1448.37, 342, 1468.46, 342, 1468.46, 353, 1453.39, 353, 1453.39, 381, 1428.28, 382, 1428.28, 443, 1375.05, 440, 1382.08, 423, 1389.11, 400, 1387.1, 364 )
+
+[node name="Label" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -37.5
+margin_top = -14.0
+margin_right = 37.5
+text = "Placeholder"
+
+[connection signal="input_event" from="Sprite2D/territory_area2D" to="." method="_on_territory_area2D_input_event"]
+[connection signal="mouse_entered" from="Sprite2D/territory_area2D" to="." method="_on_territory_area2D_mouse_entered"]
+[connection signal="mouse_exited" from="Sprite2D/territory_area2D" to="." method="_on_territory_area2D_mouse_exited"]

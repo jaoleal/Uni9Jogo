@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://assets/gimp/earth_map_beta.png" type="Texture" id=1]
-[ext_resource path="res://scripts/Countries.gd" type="Script" id=2]
-[ext_resource path="res://sceness/Asia.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/Asia.tscn" type="PackedScene" id=3]
 
 [node name="Node2D" type="Node2D"]
 
@@ -18,8 +17,4 @@ __meta__ = {
 
 [node name="LiveLayer" type="CanvasLayer" parent="."]
 
-[node name="Countries" type="Node2D" parent="LiveLayer"]
-script = ExtResource( 2 )
-
-[node name="Asia" parent="LiveLayer/Countries" instance=ExtResource( 3 )]
-unique_name_in_owner = true
+[node name="Asia" parent="LiveLayer" instance=ExtResource( 3 )]
