@@ -35,16 +35,6 @@ position = Vector2( -1419.49, -363 )
 z_index = 1
 polygon = PoolVector2Array( 1360, 411, 1425, 411, 1424, 441, 1498, 441, 1498, 477, 1527, 477, 1543, 444, 1519, 430, 1546, 404, 1590, 407, 1587, 361, 1583, 320, 1574, 308, 1538, 304, 1500, 319, 1494, 301, 1471, 291, 1465, 300, 1428, 290, 1428, 266, 1388, 252, 1330, 277, 1269, 308, 1252, 296, 1251, 310, 1274, 314, 1274, 338, 1359, 344, 1360, 354, 1323, 356, 1321, 367, 1359, 366 )
 
-[node name="Label" type="Label" parent="."]
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-margin_left = -37.5
-margin_top = -14.0
-margin_right = 37.5
-text = "Placeholder"
-
 [connection signal="input_event" from="Sprite2D/territory_area2D" to="." method="_on_territory_area2D_input_event"]
 [connection signal="mouse_entered" from="Sprite2D/territory_area2D" to="." method="_on_territory_area2D_mouse_entered"]
 [connection signal="mouse_exited" from="Sprite2D/territory_area2D" to="." method="_on_territory_area2D_mouse_exited"]

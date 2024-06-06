@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scripts/Node2D.gd" type="Script" id=1]
+[ext_resource path="res://outline.gdshader" type="Shader" id=2]
+[ext_resource path="res://assets/gimp/AmericaNorte_Parties/Split/Groelandia.png" type="Texture" id=3]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 2 )
+shader_param/color = Color( 0.254902, 0.254902, 0.254902, 1 )
+shader_param/width = 1.0
+shader_param/variation = 0.1
+shader_param/activate_variation = false
+shader_param/pattern = 0
+shader_param/inside = true
+shader_param/add_margins = false
+shader_param/number_of_images = Vector2( 1, 1 )
+
+[node name="Territory_Groelandia" type="Node2D"]
+position = Vector2( 532, 332 )
+script = ExtResource( 1 )
+TERRITORY_NAME = "Groelandia"
+
+[node name="Sprite2D" type="Sprite" parent="."]
+material = SubResource( 1 )
+position = Vector2( 0.25, 1 )
+scale = Vector2( 0.995601, 1 )
+texture = ExtResource( 3 )
+
+[node name="territory_area2D" type="Area2D" parent="Sprite2D"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sprite2D/territory_area2D"]
+position = Vector2( -1419.49, -363 )
+z_index = 1
+polygon = PoolVector2Array( 1430.29, 214, 1463.43, 227, 1493.57, 188, 1501.6, 210, 1548.81, 222, 1572.91, 284, 1578.94, 333, 1600.03, 352, 1611.08, 320, 1635.19, 287, 1686.41, 270, 1729.6, 148, 1689.43, 128, 1657.29, 98, 1521.69, 157, 1526.71, 130, 1426.27, 131, 1427.27, 151, 1412.21, 153, 1421.25, 173, 1442.34, 173, 1433.3, 195, 1445.35, 210 )
+
+[connection signal="input_event" from="Sprite2D/territory_area2D" to="." method="_on_territory_area2D_input_event"]
+[connection signal="mouse_entered" from="Sprite2D/territory_area2D" to="." method="_on_territory_area2D_mouse_entered"]
+[connection signal="mouse_exited" from="Sprite2D/territory_area2D" to="." method="_on_territory_area2D_mouse_exited"]

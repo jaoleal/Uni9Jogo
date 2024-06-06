@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://outline.gdshader" type="Shader" id=1]
+[ext_resource path="res://assets/gimp/Europe_Parties/Espanha.png" type="Texture" id=2]
+[ext_resource path="res://scripts/Node2D.gd" type="Script" id=3]
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = ExtResource( 1 )
+shader_param/color = Color( 0.254902, 0.254902, 0.254902, 1 )
+shader_param/width = 1.0
+shader_param/variation = 0.1
+shader_param/activate_variation = false
+shader_param/pattern = 0
+shader_param/inside = true
+shader_param/add_margins = false
+shader_param/number_of_images = Vector2( 1, 1 )
+
+[node name="Territory_Espanha" type="Node2D"]
+position = Vector2( 811, 483 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_group_": true
+}
+TERRITORY_NAME = "Espanha"
+
+[node name="Sprite2D" type="Sprite" parent="."]
+material = SubResource( 2 )
+position = Vector2( 46, -47 )
+scale = Vector2( 0.995601, 1 )
+texture = ExtResource( 2 )
+
+[node name="territory_area2D" type="Area2D" parent="Sprite2D"]
+position = Vector2( -44.1944, -33 )
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sprite2D/territory_area2D"]
+position = Vector2( -1383.08, -245 )
+z_index = 1
+polygon = PoolVector2Array( 1478.5, 271, 1465.45, 267, 1445.36, 275, 1445.36, 286, 1416.23, 296, 1394.13, 292, 1371.03, 315, 1340.9, 331, 1346.93, 355, 1316.79, 357, 1317.8, 394, 1352.95, 396, 1365, 384, 1395.14, 357, 1418.24, 379, 1409.2, 390, 1422.26, 399, 1436.32, 370, 1450.38, 373, 1473.48, 363, 1487.54, 340, 1501.61, 341, 1497.59, 331, 1522.7, 299, 1493.57, 310 )
+
+[connection signal="input_event" from="Sprite2D/territory_area2D" to="." method="_on_territory_area2D_input_event"]
+[connection signal="mouse_entered" from="Sprite2D/territory_area2D" to="." method="_on_territory_area2D_mouse_entered"]
+[connection signal="mouse_exited" from="Sprite2D/territory_area2D" to="." method="_on_territory_area2D_mouse_exited"]

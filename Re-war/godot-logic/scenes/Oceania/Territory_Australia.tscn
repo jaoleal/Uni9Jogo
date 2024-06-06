@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scripts/Node2D.gd" type="Script" id=1]
+[ext_resource path="res://outline.gdshader" type="Shader" id=2]
+[ext_resource path="res://assets/gimp/Oceania_Parties/australia.png" type="Texture" id=3]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 2 )
+shader_param/color = Color( 0.254902, 0.254902, 0.254902, 1 )
+shader_param/width = 1.0
+shader_param/variation = 0.1
+shader_param/activate_variation = false
+shader_param/pattern = 0
+shader_param/inside = true
+shader_param/add_margins = false
+shader_param/number_of_images = Vector2( 1, 1 )
+
+[node name="Territory_Australia" type="Node2D"]
+position = Vector2( 1335, 838 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+TERRITORY_NAME = "Australia"
+
+[node name="Sprite2D" type="Sprite" parent="."]
+material = SubResource( 1 )
+position = Vector2( 0.25, 1 )
+scale = Vector2( 0.995601, 1 )
+texture = ExtResource( 3 )
+
+[node name="territory_area2D" type="Area2D" parent="Sprite2D"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sprite2D/territory_area2D"]
+position = Vector2( -1419.49, -363 )
+z_index = 1
+polygon = PoolVector2Array( 1456.4, 358, 1431.29, 360, 1431.29, 367, 1406.18, 373, 1388.1, 397, 1366, 406, 1366, 434, 1374.04, 448, 1373.04, 473, 1389.11, 472, 1428.28, 457, 1453.39, 463, 1489.55, 496, 1515.66, 484, 1533.74, 441, 1514.66, 402, 1496.58, 394, 1496.58, 371, 1484.53, 355, 1477.5, 378 )
+
+[connection signal="input_event" from="Sprite2D/territory_area2D" to="." method="_on_territory_area2D_input_event"]
+[connection signal="mouse_entered" from="Sprite2D/territory_area2D" to="." method="_on_territory_area2D_mouse_entered"]
+[connection signal="mouse_exited" from="Sprite2D/territory_area2D" to="." method="_on_territory_area2D_mouse_exited"]

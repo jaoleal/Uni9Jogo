@@ -1,0 +1,53 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/gimp/Moscou.png" type="Texture" id=1]
+[ext_resource path="res://scripts/Node2D.gd" type="Script" id=2]
+[ext_resource path="res://outline.gdshader" type="Shader" id=3]
+
+[sub_resource type="ShaderMaterial" id=14]
+shader = ExtResource( 3 )
+shader_param/color = Color( 0.254902, 0.254902, 0.254902, 1 )
+shader_param/width = 1.0
+shader_param/variation = 0.1
+shader_param/activate_variation = false
+shader_param/pattern = 0
+shader_param/inside = true
+shader_param/add_margins = false
+shader_param/number_of_images = Vector2( 1, 1 )
+
+[node name="Territory_Moscou" type="Node2D"]
+position = Vector2( 843, 475 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+TERRITORY_NAME = "Moscou"
+
+[node name="Sprite2D" type="Sprite" parent="."]
+material = SubResource( 14 )
+position = Vector2( 0.25, 1 )
+scale = Vector2( 0.995601, 1 )
+texture = ExtResource( 1 )
+
+[node name="territory_area2D" type="Area2D" parent="Sprite2D"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sprite2D/territory_area2D"]
+position = Vector2( -1419.49, -363 )
+z_index = 1
+polygon = PoolVector2Array( 1423.26, 298, 1421.25, 390, 1469.46, 391, 1467.45, 438, 1384.08, 436, 1384.08, 396, 1369.02, 394, 1369.02, 327, 1394.13, 325, 1394.13, 289, 1471.47, 289, 1471.47, 300 )
+
+[node name="Label" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -37.5
+margin_top = -14.0
+margin_right = 37.5
+text = "Placeholder"
+
+[connection signal="input_event" from="Sprite2D/territory_area2D" to="." method="_on_territory_area2D_input_event"]
+[connection signal="mouse_entered" from="Sprite2D/territory_area2D" to="." method="_on_territory_area2D_mouse_entered"]
+[connection signal="mouse_exited" from="Sprite2D/territory_area2D" to="." method="_on_territory_area2D_mouse_exited"]

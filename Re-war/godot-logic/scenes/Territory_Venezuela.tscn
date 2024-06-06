@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scripts/Node2D.gd" type="Script" id=1]
+[ext_resource path="res://outline.gdshader" type="Shader" id=2]
+[ext_resource path="res://assets/gimp/AmericaSul_parties/Split/venezuela.png" type="Texture" id=3]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 2 )
+shader_param/color = Color( 0.254902, 0.254902, 0.254902, 1 )
+shader_param/width = 1.0
+shader_param/variation = 0.1
+shader_param/activate_variation = false
+shader_param/pattern = 0
+shader_param/inside = true
+shader_param/add_margins = false
+shader_param/number_of_images = Vector2( 1, 1 )
+
+[node name="Territory_Venezuela" type="Node2D"]
+script = ExtResource( 1 )
+TERRITORY_NAME = "Venezuela"
+
+[node name="Sprite2D" type="Sprite" parent="."]
+material = SubResource( 1 )
+position = Vector2( 0.25, 1 )
+scale = Vector2( 0.995601, 1 )
+texture = ExtResource( 3 )
+
+[node name="territory_area2D" type="Area2D" parent="Sprite2D"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sprite2D/territory_area2D"]
+position = Vector2( -1419.49, -363 )
+z_index = 1
+polygon = PoolVector2Array( 1329.85, 204, 1345.92, 237, 1384.08, 264, 1403.17, 234, 1452.38, 245, 1439.33, 224, 1404.17, 198, 1359.98, 192 )
+
+[connection signal="input_event" from="Sprite2D/territory_area2D" to="." method="_on_territory_area2D_input_event"]
+[connection signal="mouse_entered" from="Sprite2D/territory_area2D" to="." method="_on_territory_area2D_mouse_entered"]
+[connection signal="mouse_exited" from="Sprite2D/territory_area2D" to="." method="_on_territory_area2D_mouse_exited"]

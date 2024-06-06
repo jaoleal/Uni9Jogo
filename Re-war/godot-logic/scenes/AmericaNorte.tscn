@@ -1,0 +1,52 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Territory_Canada.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/gimp/earth_map_beta.png" type="Texture" id=2]
+[ext_resource path="res://Territory_Groelandia.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Territory_Alasca.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Territory_Weedland.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Territory_Mexico.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Territory_Nova Iorque.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scripts/continent_script.gd" type="Script" id=10]
+
+[node name="AmericaNorte" type="Node2D"]
+script = ExtResource( 10 )
+
+[node name="PositionReference" type="Sprite" parent="."]
+visible = false
+position = Vector2( 974, 537 )
+texture = ExtResource( 2 )
+
+[node name="Territories" type="CanvasLayer" parent="."]
+
+[node name="Territory_Alasca" parent="Territories" instance=ExtResource( 4 )]
+
+[node name="Territory_Canada" parent="Territories" instance=ExtResource( 1 )]
+
+[node name="Territory_Groelandia" parent="Territories" instance=ExtResource( 3 )]
+
+[node name="Territory_Mexico" parent="Territories" instance=ExtResource( 6 )]
+
+[node name="Territory_Nova Iorque" parent="Territories" instance=ExtResource( 7 )]
+
+[node name="Territory_Weedland" parent="Territories" instance=ExtResource( 5 )]
+
+[node name="Labels" type="CanvasLayer" parent="."]
+
+[node name="AlascaLabel" type="Position2D" parent="Labels"]
+position = Vector2( 267, 298 )
+
+[node name="CanadaLabel" type="Position2D" parent="Labels"]
+position = Vector2( 468, 285 )
+
+[node name="GroelandiaLabel" type="Position2D" parent="Labels"]
+position = Vector2( 695, 146 )
+
+[node name="Nova IorqueLabel" type="Position2D" parent="Labels"]
+position = Vector2( 584, 394 )
+
+[node name="WeedlandLabel" type="Position2D" parent="Labels"]
+position = Vector2( 439, 397 )
+
+[node name="MexicoLabel" type="Position2D" parent="Labels"]
+position = Vector2( 490, 501 )
